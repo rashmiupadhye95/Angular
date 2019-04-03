@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Person Details</title>
+</head>
+<body>
+	<h1>Person Details</h1>
+	<button type="" onclick="deleteLastPerson()">Delete Last Person</button> | 
+	<button type="" onclick="showPerson()">Show Person</button> | 
+	<button type="" onclick="deletePersons()">Delete All Person</button><hr/>
+	<form>
+		
+		<input type="text" name="Id" placeholder="ID"> <br/> <br/>
+		<input type="text" name="Name" placeholder="Name"> <br/> <br/>
+		<input type="text" name="email" placeholder="Email"> <br/><br/>
+		<input type="text" name="phone" placeholder="Phone"><br/><br/>
+		<input type="text" name="address" placeholder="Address"><br/><br/>
+		<input type="button" name="" value="Add Person" onclick="addPerson(Id.value,Name.value,email.value,phone.value,address.value)"> <br/><br/>
+	</form>
+	<script type="text/javascript">
+		getPersons = function(){
+			var personList = [];
+			if(localStorage.getItem('persons') != null){
+				personList = JSON.parse(localStorage.getItem('persons'));
+			}
+			return personList;
+		}
+
+		addPerson = function(Id,Name,email,phone,address){
+			var personList = getPersons();
+			var person = {};
+			person.Id = Id;
+			person.Name = Name;
+			person.email = email;
+			person.phone = phone;
+			person.address = address;
+			personList.push(person);
+			localStorage.setItem('persons', JSON.stringify(personList));
+			console.log('ID: '+Id);
+			console.log('Name: '+Name);
+			console.log('Email: '+email);
+			console.log('Phone: '+phone);
+			console.log('Address:'+address);
+		}
+
+		showPerson = function(){
+			var personList = getPersons();
+			console.log("Total Persons: "+personList.length);
+			if(personList.length>0){
+				console.log("Id | "+" Name |"+" Email |"+" Phone |"+" Address ");
+				for(var i=0;i<personList.length;i++){
+					console.log(personList[i].Id+" | "+personList[i].Name+" | "+personList[i].email
+						+" | "+personList[i].phone+" | "+personList[i].address);
+				}
+			}
+		}
+
+		deletePersons = function(){
+			localStorage.clear('persons');
+		}
+
+		deleteLastPerson = function(){
+			var personList = getPersons();
+				personList.pop();
+				localStorage.setItem('persons',JSON.stringify(personList));
+		} 
+
+		
+	</script>
+	
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+install ng-cli
+$>npm install -g @angular/cli
+create first app
+$> ng new my-app
+$> cd my-app
+$> ng serve --open
+
+In component.ts -
+ selector: 
+  templateUrl: 
+  styleUrls: 
+  ECMAScript:Classes
+  //function
+
+  Angular Modules(module.ts file)
+  @NgModule({
+  declarations: [],
+  imports: [],
+  providers: [],
+  bootstrap: []
+
+  [(ngModel)] = "employee.name"
